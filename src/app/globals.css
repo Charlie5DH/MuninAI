@@ -2,32 +2,172 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html,
+body {
+  height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
+/* CSS RESET OR CSS NORMALIZER */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 
+R (0)
+G (110)
+B (255 */
+
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 216 100% 98.04%;
+    --foreground: 213.6 100% 4.9%;
+
+    --primary: 214.12 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --card: 216 100% 98.04%;
+    --card-foreground: 213.6 100% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213.6 100% 4.9%;
+
+    --secondary: 214.74 100% 92.55%;
+    --secondary-foreground: 216 100% 0.98%;
+
+    --muted: 213.6 100% 95.1%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 213.6 100% 95.1%;
+    --accent-foreground: 214.12 100% 50%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 90.2%;
+    --input: 0 0% 90.2%;
+    --ring: 214.12 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
+
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: linear-gradient(to top left, #007adf, #00ecbc);
+
+    --background: 220 65% 3.52%;
+    --foreground: 220 10% 97.2%;
+
+    --muted: 220 50% 13.2%;
+    --muted-foreground: 220 10% 54.4%;
+
+    --popover: 220 45% 5.72%;
+    --popover-foreground: 220 10% 97.2%;
+
+    --card: 220 45% 5.72%;
+    --card-foreground: 220 10% 97.2%;
+
+    --border: 220 50% 13.2%;
+    --input: 220 50% 13.2%;
+
+    --primary: 220 100% 44%;
+    --primary-foreground: 220 10% 97.2%;
+
+    --secondary: 220 50% 13.2%;
+    --secondary-foreground: 220 10% 97.2%;
+
+    --accent: 220 50% 13.2%;
+    --accent-foreground: 220 10% 97.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 220 10% 97.2%;
+
+    --ring: 220 100% 44%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .grid-pattern {
+    @apply absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] -z-10 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)];
   }
+
+  .silver-header {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 font-sans;
+  }
+
+  .silver-text {
+    @apply text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center relative z-10;
+  }
+
+  .dot-background {
+    @apply absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)];
+  }
+}
+
+.dotPattern {
+  background-image: radial-gradient(rgb(35, 40, 68) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
+.use-automation-zoom-in {
+  animation: automation-zoom-in 0.5s;
+}
+
+@keyframes automation-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 14px;
+  border: 3px solid var(--primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #4b5563;
+}
+
+::-webkit-scrollbar-button:single-button {
+  background-color: #606a77;
+  display: none;
+  background-size: 10px;
+  background-repeat: no-repeat;
 }
